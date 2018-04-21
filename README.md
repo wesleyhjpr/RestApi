@@ -7,6 +7,8 @@
 
 - composer.
 
+- MySql.
+
 ### Project Setup:
 
 - in the project root run this command.
