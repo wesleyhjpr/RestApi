@@ -46,9 +46,11 @@ class UserController extends Controller
      */
     public function updateAction($id,Request $request)
     {
-        $data = new User;
-        $name = $request->get('name');
-        $email = $request->get('email');
+        $file = $request->getContent();
+        $fileDecode = json_decode($file);
+        $name = $fileDecode->name;
+        $email = $fileDecode->email;
+
         $sn = $this->getDoctrine()->getManager();
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         if (empty($user)) {
@@ -58,17 +60,17 @@ class UserController extends Controller
             $user->setName($name);
             $user->setEmail($email);
             $sn->flush();
-            return new JsonResponse("User Updated Successfully", Response::HTTP_OK,[]);
+            return new JsonResponse("User Updated Successfully", Response::HTTP_CREATED,[]);
         }
         elseif(empty($name) && !empty($email)){
             $user->setEmail($email);
             $sn->flush();
-            return new JsonResponse("email Updated Successfully", Response::HTTP_OK,[]);
+            return new JsonResponse("email Updated Successfully", Response::HTTP_CREATED,[]);
         }
         elseif(!empty($name) && empty($email)){
             $user->setName($name);
             $sn->flush();
-            return new JsonResponse("User Name Updated Successfully", Response::HTTP_OK,[]);
+            return new JsonResponse("User Name Updated Successfully", Response::HTTP_CREATED,[]);
         }
         else return new JsonResponse("User name or email cannot be empty", Response::HTTP_NOT_ACCEPTABLE,[]);
     }
@@ -77,9 +79,12 @@ class UserController extends Controller
      */
     public function postAction(Request $request)
     {
+        $file = $request->getContent();
+        $fileDecode = json_decode($file);
+        $name = $fileDecode->name;
+        $email = $fileDecode->email;
         $data = new User;
-        $name = $request->get('name');
-        $email = $request->get('email');
+
         if(empty($name) || empty($email))
         {
             return new JsonResponse("NULL VALUES ARE NOT ALLOWED", Response::HTTP_NOT_ACCEPTABLE,[]);
@@ -89,7 +94,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
-        return new JsonResponse("User Added Successfully", Response::HTTP_OK,[]);
+        return new JsonResponse("User Added Successfully", Response::HTTP_CREATED,[]);
     }
     /**
      * @FOSRest\Delete("/users/{id}")
@@ -106,6 +111,6 @@ class UserController extends Controller
             $sn->remove($user);
             $sn->flush();
         }
-        return new JsonResponse("deleted successfully", Response::HTTP_OK,[]);
+        return new JsonResponse("deleted successfully", Response::HTTP_NO_CONTENT,[]);
     }
 }
