@@ -4,7 +4,7 @@
 
 - PHP 7.1 or higher.
 
-- Composer.
+- composer.
 
 ### Project Setup:
 
