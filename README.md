@@ -31,7 +31,7 @@ $ php bin/console doctrine:database:create
 ```
 => to create the database structure.
 ``` 
-$ bin/console doctrine:schema:create
+$ php bin/console doctrine:schema:create
 ```
 To start the server, run:
 ```
