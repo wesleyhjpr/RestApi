@@ -23,7 +23,7 @@ The database connection information is stored as an environment variable called 
 DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
 ```
 
-next we run this commands:
+- next we run this commands:
 
 => for database creation.
 ```
@@ -33,7 +33,7 @@ $ php bin/console doctrine:database:create
 ``` 
 $ php bin/console doctrine:schema:create
 ```
-To start the server, run:
+- To start the server, run:
 ```
 $ php -S 127.0.0.1:8000 -t public
 ```
