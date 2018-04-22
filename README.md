@@ -42,5 +42,5 @@ $ php -S 127.0.0.1:8000 -t public
 ```
 now we have the app running on ``` http://127.0.0.1:8000/ ```
 ### Unit Test
-Follow:
+Follow this Project:
 https://github.com/wesleyhjpr/unitTest.git
