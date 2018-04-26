@@ -26,7 +26,7 @@ The database connection information is stored as an environment variable called 
 DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name"
 ```
 
-- next we run this commands:
+- next run this commands:
 
 => for database creation.
 ```
@@ -41,3 +41,6 @@ $ php bin/console doctrine:schema:create
 $ php -S 127.0.0.1:8000 -t public
 ```
 now we have the app running on ``` http://127.0.0.1:8000/ ```
+### Unit Test
+Follow this Project:
+https://github.com/wesleyhjpr/unitTest.git
